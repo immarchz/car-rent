@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { footerLinks } from "@/constants";
+
 const Footer = () => {
   return (
     <div>
@@ -36,12 +38,35 @@ const Footer = () => {
           </div>
 
           <div className="footer__links">
-          <h3>
-            About
-          </h3>
+            {footerLinks.map((link) => (
+              <div key={link.title} className="footer__link">
+                <h3 className="font-bold">{link.title}</h3>
+                {link.links.map((item) => (
+                  <Link key={item.title} href={item.url}>
+                    {item.title}
+                  </Link>
+                ))}
+              </div>
+            ))}
           </div>
+          </div>
+          <div
+            className="flex justify-between
+                items-center flex-wrap mt-10 border-t
+                border-gray-100 sm:px-16 px-6 py-10"
+          >
+            <p>@2023 Carhub. All Rights Reserved  </p>
 
-        </div>
+            <div className="footer__copyrights-link">
+              <Link className="text-gray-500" href="/">
+                Privacy policy
+              </Link>
+              <Link className="text-gray-500" href="/">
+                Term of Use
+              </Link>
+            </div>
+          </div>
+        
       </footer>
     </div>
   );
